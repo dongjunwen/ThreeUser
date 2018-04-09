@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.three.base.userjdbc.mapper.SysRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.three.base.userjdbc.modal.SysRole" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="role_code" property="roleCode" jdbcType="VARCHAR" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="if_admin" property="ifAdmin" jdbcType="CHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="create_no" property="createNo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modi_no" property="modiNo" jdbcType="VARCHAR" />
+    <result column="modi_time" property="modiTime" jdbcType="TIMESTAMP" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, role_code, role_name, status, if_admin, memo, create_no, create_time, modi_no, 
+    modi_time, version
+  </sql>
+  <select id="selectByRoleCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_role
+    where role_code = #{roleCode,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findRoleLike" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_role
+    where 1=1
+    and (
+    role_code like CONCAT (#{condStr},'%') or
+    role_name like CONCAT (#{condStr},'%')
+    )
+  </select>
+</mapper>
