@@ -8,6 +8,7 @@ import com.three.base.usercommon.utils.DateUtil;
 import org.apache.commons.lang3.StringUtils;
 import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.weekend.Weekend;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -97,8 +98,8 @@ public class Common {
      * @param classes
      * @return
      */
-    public static Condition getServiceCondition(Map<String,String> params, Class classes){
-        Condition condition = new Condition(classes);
+    public static Weekend getServiceCondition(Map<String,String> params, Class classes){
+        Weekend condition = new Weekend(classes);
         Example.Criteria criteria = condition.createCriteria();
         int pageNum = 1;    //当前页默认为1
         int pageSize = 5;   //默认每页显示5条

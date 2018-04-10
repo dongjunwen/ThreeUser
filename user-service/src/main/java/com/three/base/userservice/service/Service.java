@@ -2,6 +2,7 @@ package com.three.base.userservice.service;
 
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import tk.mybatis.mapper.entity.Condition;
+import tk.mybatis.mapper.weekend.Weekend;
 
 import java.util.List;
 
@@ -71,7 +72,7 @@ public interface Service<T> {
      * @param condition
      * @return
      */
-    List<T> findByCondition(Condition condition);
+    List<T> findByCondition(Weekend condition);
 
     /**
      * 获取所有

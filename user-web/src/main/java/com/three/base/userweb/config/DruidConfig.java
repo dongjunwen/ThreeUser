@@ -30,7 +30,7 @@ public class DruidConfig {
     private static final String DB_PREFIX = "spring.datasource";
     // 精确到 master 目录，以便跟其他数据源隔离
     static final String PACKAGE = "com.three.base.userjdbc.mapper";
-    static final String MAPPER_LOCATION = "classpath*:persistence/xml/*.xml";
+    static final String MAPPER_LOCATION = "classpath*:/persistence/xml/*.xml";
 
     @Bean
     public ServletRegistrationBean druidServlet() {

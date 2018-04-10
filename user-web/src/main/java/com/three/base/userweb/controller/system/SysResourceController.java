@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.three.base.userapi.SysResourceService;
 import com.three.base.usercommon.PO.result.SysResourceResultVo;
+import com.three.base.usercommon.PO.system.SysResourceCondVo;
 import com.three.base.usercommon.PO.system.SysResourceVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
@@ -104,19 +105,9 @@ public class SysResourceController {
 
 
     @ApiOperation(value = "菜单资源列表")
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "currPage",value = "当前页",paramType = "query"),
-            @ApiImplicitParam(name = "sort",value = "排序 ASC 或 DESC",required = false,example = "asc/desc",paramType = "query"),
-            @ApiImplicitParam(name = "orderBy",value = "排序字段",required = false,example = "createdTime",paramType = "query"),
-            @ApiImplicitParam(name = "pageSize",value = "每页显示条数",required = false,example = "createdTime",paramType = "query"),
-            //@ApiImplicitParam(name = "startTime",value = "开始时间",dataType = "long",paramType = "query"),如果时间类型则可以打开
-            //@ApiImplicitParam(name = "endTime",value = "结束时间",dataType = "long",paramType = "query"),
-            @ApiImplicitParam(name = "filter",value = "通用表过滤器。发送JSON键/值对，如<code>{“key”:“value”}</code>。", paramType = "query",dataTypeClass = JSON.class)
-
-    })
-    public Result<PageUitls<SysResource>> findList(@RequestParam @ApiParam(hidden = true) Map<String,String> params){
-        Page<SysResource> page =  sysResourceService.findList(params);
+    @RequestMapping(value = "findList",method = RequestMethod.POST)
+    public Result<PageUitls<SysResource>> findList(@RequestBody SysResourceCondVo sysResourceCondVo ){
+        Page<SysResource> page =  sysResourceService.findList(sysResourceCondVo);
         return Result.newSuccess(new PageUitls<SysResource>(page));
     }
 }

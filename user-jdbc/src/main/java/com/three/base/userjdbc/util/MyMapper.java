@@ -1,9 +1,10 @@
-package com.three.base.userjdbc.mapper;
+package com.three.base.userjdbc.util;
 
 /**
  * Created by Administrator on 2017/8/4.
  */
 
+import org.springframework.context.annotation.ComponentScan;
 import tk.mybatis.mapper.common.ConditionMapper;
 import tk.mybatis.mapper.common.IdsMapper;
 import tk.mybatis.mapper.common.Mapper;

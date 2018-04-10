@@ -1,9 +1,10 @@
 package com.three.base.userservice.service;
 
-import com.three.base.userjdbc.mapper.MyMapper;
+import com.three.base.userjdbc.util.MyMapper;
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Condition;
+import tk.mybatis.mapper.weekend.Weekend;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -79,7 +80,7 @@ public abstract class AbstractService<T> implements Service<T> {
     }
 
     @Override
-    public List<T> findByCondition(Condition condition) {
+    public List<T> findByCondition(Weekend condition) {
         return mapper.selectByCondition(condition);
     }
 

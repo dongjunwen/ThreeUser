@@ -80,12 +80,7 @@
 			<artifactId>nekohtml</artifactId>
 			<version>1.9.22</version>
 		</dependency>
-		<!-- optional=true,依赖不会传递，该项目依赖devtools；之后依赖myboot项目的项目如果想要使用devtools，需要重新引入 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
+
 
 		<!-- protobuf 传输依赖 -->
 		<dependency>
@@ -131,12 +126,7 @@
 			<artifactId>user-jdbc</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<!-- 阿里数据库连接池依赖-->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>1.1.6</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.three.base</groupId>
 			<artifactId>user-api</artifactId>

@@ -3,6 +3,7 @@ package com.three.base.userapi;
 
 import com.github.pagehelper.Page;
 import com.three.base.usercommon.PO.result.SysResourceResultVo;
+import com.three.base.usercommon.PO.system.SysResourceCondVo;
 import com.three.base.usercommon.PO.system.SysResourceVo;
 import com.three.base.usercommon.result.Result;
 import com.three.base.userjdbc.modal.SysResource;
@@ -24,7 +25,7 @@ public interface SysResourceService {
 
     SysResource getEntityByNo(String sourceNo);
 
-    Page<SysResource> findList(Map<String, String> params);
+    Page<SysResource> findList(SysResourceCondVo sysResourceCondVo);
 
     List<SysResourceResultVo> getListByCurrentUser(String userNo);
 }

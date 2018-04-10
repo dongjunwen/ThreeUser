@@ -14,6 +14,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Condition;
+import tk.mybatis.mapper.weekend.Weekend;
 
 import java.util.Date;
 import java.util.List;
@@ -80,7 +81,7 @@ public class SysRoleServiceImpl extends AbstractService<SysRole> implements SysR
 
     @Override
     public Page<SysRole> findList(Map<String, String> params) {
-        Condition serviceCondition = Common.getServiceCondition(params, SysRole.class);
+        Weekend serviceCondition = Common.getServiceCondition(params, SysRole.class);
         List<SysRole> sysRoles = findByCondition(serviceCondition);
         return (Page<SysRole>) sysRoles;
     }

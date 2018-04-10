@@ -2,6 +2,7 @@ package com.three.base.userjdbc.mapper;
 
 
 import com.three.base.userjdbc.modal.SysRole;
+import com.three.base.userjdbc.util.MyMapper;
 
 import java.util.List;
 

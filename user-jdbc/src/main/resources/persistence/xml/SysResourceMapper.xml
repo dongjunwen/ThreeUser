@@ -42,6 +42,19 @@
     ORDER BY LEVEL,sort_order
   </select>
 
+    <select id="selectByList" parameterType="com.three.base.usercommon.PO.system.SysResourceCondVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_resource
+        where
+        1=1
+        <if test="sourceNo!=null">
+          AND  source_no = #{sourceNo,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+
+
 
   <update id="updateByResourceNo" parameterType="com.three.base.userjdbc.modal.SysResource">
     update sys_resource

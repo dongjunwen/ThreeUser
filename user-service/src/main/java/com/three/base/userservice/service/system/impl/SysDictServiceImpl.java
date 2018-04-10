@@ -16,6 +16,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Condition;
+import tk.mybatis.mapper.weekend.Weekend;
 
 import java.util.List;
 import java.util.Map;
@@ -71,7 +72,7 @@ public class SysDictServiceImpl extends AbstractService<SysDict> implements SysD
 
     @Override
     public Page<SysDict> findList(Map<String, String> params) {
-        Condition serviceCondition = Common.getServiceCondition(params, SysDict.class);
+        Weekend serviceCondition = Common.getServiceCondition(params, SysDict.class);
         List<SysDict> sysDicts = findByCondition(serviceCondition);
         return (Page<SysDict>) sysDicts;
     }

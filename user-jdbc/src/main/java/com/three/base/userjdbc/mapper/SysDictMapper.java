@@ -1,6 +1,7 @@
 package com.three.base.userjdbc.mapper;
 
 import com.three.base.userjdbc.modal.SysDict;
+import com.three.base.userjdbc.util.MyMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableTransactionManagement
-@ComponentScan("com.three.base")
+@ComponentScan(value = "com.three.base")
 public class UserWebApplication {
 
 	public static void main(String[] args) {

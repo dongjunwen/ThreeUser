@@ -1,7 +1,9 @@
 package com.three.base.userjdbc.mapper;
 
 
+import com.three.base.usercommon.PO.system.SysResourceCondVo;
 import com.three.base.userjdbc.modal.SysResource;
+import com.three.base.userjdbc.util.MyMapper;
 
 import java.util.List;
 
@@ -12,4 +14,6 @@ public interface SysResourceMapper extends MyMapper<SysResource> {
     int updateByResourceNo(SysResource sysResource);
 
     List<SysResource> selectListByUserNo(String userNo);
+
+    List<SysResource> selectByList(SysResourceCondVo sysResourceCondVo);
 }

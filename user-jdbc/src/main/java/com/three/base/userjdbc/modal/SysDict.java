@@ -3,7 +3,6 @@ package com.three.base.userjdbc.modal;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "sys_dict")
 public class SysDict {
     @Id
     private Integer id;
