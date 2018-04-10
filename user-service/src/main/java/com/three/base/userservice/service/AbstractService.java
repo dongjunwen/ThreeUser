@@ -1,4 +1,4 @@
-package com.three.user.userservice.service;
+package com.three.base.userservice.service;
 
 import com.three.base.userjdbc.mapper.MyMapper;
 import org.apache.ibatis.exceptions.TooManyResultsException;

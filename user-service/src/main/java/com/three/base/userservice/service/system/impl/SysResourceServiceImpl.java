@@ -1,4 +1,4 @@
-package com.three.user.userservice.service.system.impl;
+package com.three.base.userservice.service.system.impl;
 
 
 import com.github.pagehelper.Page;
@@ -10,7 +10,7 @@ import com.three.base.usercommon.result.Result;
 import com.three.base.userjdbc.mapper.SysResourceMapper;
 import com.three.base.userjdbc.modal.SysResource;
 import com.three.base.userjdbc.util.Common;
-import com.three.user.userservice.service.AbstractService;
+import com.three.base.userservice.service.AbstractService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;

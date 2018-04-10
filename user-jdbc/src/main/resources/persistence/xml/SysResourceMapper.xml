@@ -43,7 +43,7 @@
   </select>
 
 
-  <update id="updateByResourceNo" parameterType="com.fangxin.siwei.fangzhi.modal.SysResource">
+  <update id="updateByResourceNo" parameterType="com.three.base.userjdbc.modal.SysResource">
     update sys_resource
     <set>
 

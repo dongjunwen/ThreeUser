@@ -1,4 +1,4 @@
-package com.three.user.userservice.service.system.impl;
+package com.three.base.userservice.service.system.impl;
 
 
 import com.three.base.userapi.SysRoleResourceService;

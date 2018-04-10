@@ -44,7 +44,7 @@
     delete from sys_user
     where user_no = #{userNo,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.fangxin.siwei.fangzhi.modal.SysUser">
+  <insert id="insert" parameterType="com.three.base.userjdbc.modal.SysUser">
     insert into sys_user (id, user_no, user_name,
     nick_name, phone_num, email_addr,
     password, status, memo,
@@ -58,7 +58,7 @@
     #{modiNo,jdbcType=VARCHAR}, #{modiTime,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}
     )
   </insert>
-  <insert id="insertSelective" parameterType="com.fangxin.siwei.fangzhi.modal.SysUser">
+  <insert id="insertSelective" parameterType="com.three.base.userjdbc.modal.SysUser">
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -155,7 +155,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fangxin.siwei.fangzhi.modal.SysUser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.three.base.userjdbc.modal.SysUser">
     update sys_user
     <set>
       <if test="userNo != null">
@@ -203,7 +203,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fangxin.siwei.fangzhi.modal.SysUser">
+  <update id="updateByPrimaryKey" parameterType="com.three.base.userjdbc.modal.SysUser">
     update sys_user
     set user_no = #{userNo,jdbcType=VARCHAR},
     user_name = #{userName,jdbcType=VARCHAR},
@@ -222,7 +222,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <update id="updateByUserNo" parameterType="com.fangxin.siwei.fangzhi.modal.SysUser">
+  <update id="updateByUserNo" parameterType="com.three.base.userjdbc.modal.SysUser">
     update sys_user
     <set>
       <if test="userName != null">

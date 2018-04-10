@@ -1,4 +1,4 @@
-package com.three.user.userservice.service;
+package com.three.base.userservice.service;
 
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import tk.mybatis.mapper.entity.Condition;

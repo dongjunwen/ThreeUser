@@ -1,4 +1,4 @@
-package com.three.user.userservice.service.system.impl;
+package com.three.base.userservice.service.system.impl;
 
 
 import com.github.pagehelper.Page;
@@ -9,7 +9,7 @@ import com.three.base.usercommon.result.Result;
 import com.three.base.userjdbc.mapper.SysRoleMapper;
 import com.three.base.userjdbc.modal.SysRole;
 import com.three.base.userjdbc.util.Common;
-import com.three.user.userservice.service.AbstractService;
+import com.three.base.userservice.service.AbstractService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.three.user.userservice.util;
+package com.three.base.userservice.util;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
