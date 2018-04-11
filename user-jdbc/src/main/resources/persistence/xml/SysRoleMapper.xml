@@ -35,4 +35,19 @@
     role_name like CONCAT (#{condStr},'%')
     )
   </select>
+  <select id="findList" parameterType="com.three.base.usercommon.PO.system.SysRoleCondVo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_role
+    where 1=1
+    <if test="roleCode!=null and roleCode!=''">
+      and role_code = #{roleCode,jdbcType=VARCHAR}
+    </if>
+    <if test="roleName!=null and roleName!=''">
+      and role_name like  #{roleName,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="status!=null and status!=''">
+      and status = #{status,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

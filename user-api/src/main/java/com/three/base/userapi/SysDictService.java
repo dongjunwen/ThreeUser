@@ -1,6 +1,7 @@
 package com.three.base.userapi;
 
 import com.github.pagehelper.Page;
+import com.three.base.usercommon.PO.system.SysDictCondVo;
 import com.three.base.usercommon.PO.system.SysDictVo;
 import com.three.base.usercommon.result.Result;
 import com.three.base.userjdbc.modal.SysDict;
@@ -22,7 +23,7 @@ public interface SysDictService {
 
     SysDict getEntityByNo(String dictType, String dictCode);
 
-    Page<SysDict> findList(Map<String, String> params);
+    Page<SysDict> findList(SysDictCondVo sysDictCondVo);
 
     List<SysDict> getEntityByDictType(String dictType);
 

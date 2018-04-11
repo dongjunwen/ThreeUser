@@ -34,4 +34,26 @@
     <include refid="Base_Column_List" />
     from sys_dict
   </select>
+
+  <select id="findList" parameterType="com.three.base.usercommon.PO.system.SysDictCondVo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_dict
+    where 1=1
+    <if test="dictType!=null and dictType!=''">
+     and  dict_type = #{dictType,jdbcType=VARCHAR}
+    </if>
+    <if test="dictCode!=null and dictCode!=''">
+      and dict_code = #{dictCode,jdbcType=VARCHAR}
+    </if>
+    <if test="fhDictCode!=null and fhDictCode!=''">
+      and fh_dict_code = #{fhDictCode,jdbcType=VARCHAR}
+    </if>
+    <if test="dictName!=null and dictName!=''">
+      and  dict_name LIKE #{dictName,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="dictValue!=null and dictValue!=''">
+      and  dict_value LIKE #{dictValue,jdbcType=VARCHAR}||'%'
+    </if>
+  </select>
 </mapper>

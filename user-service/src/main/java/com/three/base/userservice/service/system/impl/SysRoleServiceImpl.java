@@ -2,7 +2,9 @@ package com.three.base.userservice.service.system.impl;
 
 
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.three.base.userapi.SysRoleService;
+import com.three.base.usercommon.PO.system.SysRoleCondVo;
 import com.three.base.usercommon.PO.system.SysRoleVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
@@ -80,9 +82,9 @@ public class SysRoleServiceImpl extends AbstractService<SysRole> implements SysR
     }
 
     @Override
-    public Page<SysRole> findList(Map<String, String> params) {
-        Weekend serviceCondition = Common.getServiceCondition(params, SysRole.class);
-        List<SysRole> sysRoles = findByCondition(serviceCondition);
+    public Page<SysRole> findList(SysRoleCondVo sysRoleCondVo) {
+        PageHelper.startPage(sysRoleCondVo.getPageNum(), sysRoleCondVo.getPageSize());
+        List<SysRole> sysRoles = sysRoleMapper.findList(sysRoleCondVo);
         return (Page<SysRole>) sysRoles;
     }
 

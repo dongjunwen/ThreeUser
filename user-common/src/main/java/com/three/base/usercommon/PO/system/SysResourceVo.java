@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 
 /**
  * @Date:2017/10/23 0023 14:39
@@ -19,11 +20,12 @@ import javax.validation.constraints.Max;
 @ApiModel(value = "资源操作实体 SysResourceVo")
 public class SysResourceVo  {
 
-    @NotBlank(message = "资源代码不能为空")
+    @NotNull(message = "资源代码不能为空")
     @Length(min = 1,max = 32,message = "资源代码长度不能超过32")
     @ApiModelProperty(value = "资源代码",required =true )
     private String sourceNo;
     @Length(max = 64,message = "资源名称长度不能超过64")
+    @NotNull(message = "资源名称不能为空")
     @ApiModelProperty(value = "资源名称",required =false )
     private String sourceName;
     @Length(max = 32,message = "上级资源代码长度不能超过32")

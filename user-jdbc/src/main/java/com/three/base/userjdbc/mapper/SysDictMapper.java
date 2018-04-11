@@ -1,5 +1,6 @@
 package com.three.base.userjdbc.mapper;
 
+import com.three.base.usercommon.PO.system.SysDictCondVo;
 import com.three.base.userjdbc.modal.SysDict;
 import com.three.base.userjdbc.util.MyMapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,4 +14,6 @@ public interface SysDictMapper extends MyMapper<SysDict> {
     List<SysDict> selectByDictType(String dictType);
 
     List<SysDict> findAll();
+
+    List<SysDict> findList(SysDictCondVo sysDictCondVo);
 }

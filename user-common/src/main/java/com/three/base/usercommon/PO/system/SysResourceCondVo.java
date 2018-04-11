@@ -17,7 +17,7 @@ import javax.validation.constraints.Max;
  **/
 @Getter
 @Setter
-@ApiModel(value = "资源操作实体 SysResourceVo")
+@ApiModel(value = "资源操作实体 SysResourceCondVo")
 public class SysResourceCondVo extends PageVo{
 
     @ApiModelProperty(value = "资源代码",required =false )

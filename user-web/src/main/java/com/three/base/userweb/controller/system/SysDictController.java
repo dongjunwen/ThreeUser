@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 
 import com.github.pagehelper.Page;
 import com.three.base.userapi.SysDictService;
+import com.three.base.usercommon.PO.system.SysDictCondVo;
 import com.three.base.usercommon.PO.system.SysDictVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
@@ -38,7 +39,8 @@ public class SysDictController {
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation(value="创建数据字典", notes="根据数据字典对象创建数据字典")
     //@ApiImplicitParam(name = "sysDictVo", value = "数据字典信息实体 sysDictVo",dataTypeClass = SysDictVo.class)
-    public Result<String> create(@ApiParam(name = "sysDictVo", value = "数据字典信息实体 sysDictVo", required = true) @RequestBody SysDictVo sysDictVo){
+    @ApiParam(name = "sysDictVo", value = "数据字典信息实体 sysDictVo", required = true)
+    public Result<String> create( @RequestBody SysDictVo sysDictVo){
         ValidatorUtil.validateEntity(sysDictVo);//校验
         try{
             Result<Integer> _result= sysDictService.create(sysDictVo);
@@ -106,19 +108,9 @@ public class SysDictController {
     }
 
     @ApiOperation(value = "数据字典列表")
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "currPage",value = "当前页",paramType = "query"),
-            @ApiImplicitParam(name = "sort",value = "排序 ASC 或 DESC",required = false,example = "asc/desc",paramType = "query"),
-            @ApiImplicitParam(name = "orderBy",value = "排序字段",required = false,example = "createdTime",paramType = "query"),
-            @ApiImplicitParam(name = "pageSize",value = "每页显示条数",required = false,example = "createdTime",paramType = "query"),
-            //@ApiImplicitParam(name = "startTime",value = "开始时间",dataType = "long",paramType = "query"),如果时间类型则可以打开
-            //@ApiImplicitParam(name = "endTime",value = "结束时间",dataType = "long",paramType = "query"),
-            @ApiImplicitParam(name = "filter",value = "通用表过滤器。发送JSON键/值对，如<code>{“key”:“value”}</code>。", paramType = "query",dataTypeClass = JSON.class)
-
-    })
-    public Result<PageUitls<SysDict>> findList(@RequestParam @ApiParam(hidden = true) Map<String,String> params){
-        Page<SysDict> page =  sysDictService.findList(params);
+    @RequestMapping(value = "findList",method = RequestMethod.POST)
+    public Result<PageUitls<SysDict>> findList(@RequestBody SysDictCondVo sysDictCondVo){
+        Page<SysDict> page =  sysDictService.findList(sysDictCondVo);
         return Result.newSuccess(new PageUitls<SysDict>(page));
     }
 }

@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Length;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @Date:2017/10/24 0024 13:50
  * @Author lu.dong
@@ -16,10 +18,12 @@ public class SysDictVo  {
     @ApiModelProperty(value = "字典类型",required =false )
     private String dictType;
     @Length(max = 32,message = "字典代码长度不能超过32")
+    @NotNull(message = "字典代码不能为空")
     @ApiModelProperty(value = "字典代码",required =false )
     private String dictCode;
     @Length(max = 64,message = "字典名称长度不能超过64")
     @ApiModelProperty(value = "字典名称",required =false )
+    @NotNull(message = "字典名称不能为空")
     private String dictName;
     @Length(max = 128,message = "字典值长度不能超过128")
     @ApiModelProperty(value = "字典值",required =false )

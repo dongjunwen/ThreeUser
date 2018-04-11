@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 
 import com.github.pagehelper.Page;
 import com.three.base.userapi.SysRoleService;
+import com.three.base.usercommon.PO.system.SysRoleCondVo;
 import com.three.base.usercommon.PO.system.SysRoleVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
@@ -102,19 +103,9 @@ public class SysRoleController {
     }
 
     @ApiOperation(value = "角色列表")
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "currPage",value = "当前页",paramType = "query"),
-            @ApiImplicitParam(name = "sort",value = "排序 ASC 或 DESC",required = false,example = "asc/desc",paramType = "query"),
-            @ApiImplicitParam(name = "orderBy",value = "排序字段",required = false,example = "createdTime",paramType = "query"),
-            @ApiImplicitParam(name = "pageSize",value = "每页显示条数",required = false,example = "createdTime",paramType = "query"),
-            //@ApiImplicitParam(name = "startTime",value = "开始时间",dataType = "long",paramType = "query"),如果时间类型则可以打开
-            //@ApiImplicitParam(name = "endTime",value = "结束时间",dataType = "long",paramType = "query"),
-            @ApiImplicitParam(name = "filter",value = "通用表过滤器。发送JSON键/值对，如<code>{“key”:“value”}</code>。", paramType = "query",dataTypeClass = JSON.class)
-
-    })
-    public Result<PageUitls<SysRole>> findList(@RequestParam @ApiParam(hidden = true) Map<String,String> params){
-        Page<SysRole> page =  sysRoleService.findList(params);
+    @RequestMapping(value = "findList",method = RequestMethod.POST)
+    public Result<PageUitls<SysRole>> findList(@RequestBody SysRoleCondVo sysRoleCondVo){
+        Page<SysRole> page =  sysRoleService.findList(sysRoleCondVo);
         return Result.newSuccess(new PageUitls<SysRole>(page));
     }
 }

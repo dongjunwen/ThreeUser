@@ -3,6 +3,7 @@ package com.three.base.userapi;
 
 
 import com.github.pagehelper.Page;
+import com.three.base.usercommon.PO.system.SysRoleCondVo;
 import com.three.base.usercommon.PO.system.SysRoleVo;
 import com.three.base.usercommon.result.Result;
 import com.three.base.userjdbc.modal.SysRole;
@@ -24,7 +25,7 @@ public interface SysRoleService {
 
     SysRole getEntityByNo(String roleCode);
 
-    Page<SysRole> findList(Map<String, String> params);
+    Page<SysRole> findList(SysRoleCondVo sysRoleCondVo);
 
     List<SysRole> findRoleLike(String condStr);
 }

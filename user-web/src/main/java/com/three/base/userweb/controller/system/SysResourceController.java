@@ -40,7 +40,8 @@ public class SysResourceController {
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation(value="创建菜单资源", notes="根据菜单资源对象创建菜单资源")
     //@ApiImplicitParam(name = "sysResourceVo", value = "菜单资源信息实体 sysResourceVo",dataTypeClass = SysResourceVo.class)
-    public Result<String> create(@ApiParam(name = "sysResourceVo", value = "菜单资源信息实体 sysResourceVo", required = true) @RequestBody SysResourceVo sysResourceVo){
+    @ApiParam(name = "sysResourceVo", value = "菜单资源信息实体 sysResourceVo", required = true)
+    public Result<String> create( @RequestBody SysResourceVo sysResourceVo){
         ValidatorUtil.validateEntity(sysResourceVo);//校验
         try{
             sysResourceVo.setOperNo(ShiroUtils.getCurrentUserNo());

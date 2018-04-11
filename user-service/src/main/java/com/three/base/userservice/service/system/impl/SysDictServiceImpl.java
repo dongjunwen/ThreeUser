@@ -2,7 +2,9 @@ package com.three.base.userservice.service.system.impl;
 
 
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.three.base.userapi.SysDictService;
+import com.three.base.usercommon.PO.system.SysDictCondVo;
 import com.three.base.usercommon.PO.system.SysDictVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
@@ -71,9 +73,9 @@ public class SysDictServiceImpl extends AbstractService<SysDict> implements SysD
     }
 
     @Override
-    public Page<SysDict> findList(Map<String, String> params) {
-        Weekend serviceCondition = Common.getServiceCondition(params, SysDict.class);
-        List<SysDict> sysDicts = findByCondition(serviceCondition);
+    public Page<SysDict> findList(SysDictCondVo sysDictCondVo) {
+        PageHelper.startPage(sysDictCondVo.getPageNum(), sysDictCondVo.getPageSize());
+        List<SysDict> sysDicts = sysDictMapper.findList(sysDictCondVo);
         return (Page<SysDict>) sysDicts;
     }
 
