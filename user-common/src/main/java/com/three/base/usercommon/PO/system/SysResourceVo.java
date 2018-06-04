@@ -52,7 +52,6 @@ public class SysResourceVo  {
     @Length(max = 64,message = "备注长度不能超过64")
     @ApiModelProperty(value = "备注",required =false )
     private String memo;
-
     private String operNo;
 
 

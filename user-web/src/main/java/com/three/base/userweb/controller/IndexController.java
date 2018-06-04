@@ -93,7 +93,7 @@ public class IndexController {
         try {
             Result<Integer> _result = sysUserService.modiPass(sysUserModiVo);
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
             return Result.newSuccess("修改修改成功");
         } catch (Exception e) {

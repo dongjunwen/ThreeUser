@@ -45,7 +45,7 @@ public class SysDictController {
         try{
             Result<Integer> _result= sysDictService.create(sysDictVo);
             if(!_result.isSuccess()){
-                return Result.newError(_result.getCode(),_result.getMessage());
+                return Result.newError(_result.getRetCode(),_result.getRetMsg());
             }
             return  Result.newSuccess("添加数据字典成功");
         }catch (Exception e){
@@ -60,7 +60,7 @@ public class SysDictController {
         try {
             Result<Integer> _result =  sysDictService.update(sysDictVo);
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
             return Result.newSuccess("修改数据字典成功");
         } catch (Exception e) {
@@ -79,7 +79,7 @@ public class SysDictController {
         try {
             Result<Integer> _result =     sysDictService.delete(dictType,dictCode);
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
             return Result.newSuccess("删除数据字典成功");
         }catch (Exception e){

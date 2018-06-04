@@ -45,7 +45,7 @@ public class SysRoleController {
             sysRoleVo.setOperNo(ShiroUtils.getCurrentUserNo());
             Result<Integer> _result= sysRoleService.create(sysRoleVo);
             if(!_result.isSuccess()){
-                return Result.newError(_result.getCode(),_result.getMessage());
+                return Result.newError(_result.getRetCode(),_result.getRetMsg());
             }
             return  Result.newSuccess("添加角色成功");
         }catch (Exception e){
@@ -61,7 +61,7 @@ public class SysRoleController {
             sysRoleVo.setOperNo(ShiroUtils.getCurrentUserNo());
             Result<Integer> _result =  sysRoleService.update(sysRoleVo);
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
             return Result.newSuccess("修改角色成功");
         } catch (Exception e) {
@@ -77,7 +77,7 @@ public class SysRoleController {
         try {
             Result<Integer> _result =     sysRoleService.delete(roleCode);
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
             return Result.newSuccess("删除角色成功");
         }catch (Exception e){

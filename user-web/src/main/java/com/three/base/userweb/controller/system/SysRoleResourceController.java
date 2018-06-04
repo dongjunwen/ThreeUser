@@ -43,7 +43,7 @@ public class SysRoleResourceController {
             sysRoleResourceVo.setOperNo(ShiroUtils.getCurrentUserNo());
             Result<Integer> _result= sysRoleResourceService.create(sysRoleResourceVo);
             if(!_result.isSuccess()){
-                return Result.newError(_result.getCode(),_result.getMessage());
+                return Result.newError(_result.getRetCode(),_result.getRetMsg());
             }
             return  Result.newSuccess("添加角色资源成功");
         }catch (Exception e){
@@ -59,7 +59,7 @@ public class SysRoleResourceController {
         try {
             Result<Integer> _result =     sysRoleResourceService.delete(id);
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
             return Result.newSuccess("删除角色资源成功");
         }catch (Exception e){
@@ -75,7 +75,7 @@ public class SysRoleResourceController {
         try {
             Result<Integer> _result =     sysRoleResourceService.deleteByIds(ids);
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
             return Result.newSuccess("批量删除角色资源成功");
         }catch (Exception e){

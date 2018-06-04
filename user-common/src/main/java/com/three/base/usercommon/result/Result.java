@@ -14,11 +14,11 @@ public class Result<T> implements Serializable{
     /**
      * 返回代码
      */
-    private String code;
+    private String retCode;
     /**
      * 返回消息
      */
-    private String message;
+    private String retMsg;
     /**
      * 返回数据
      */
@@ -50,39 +50,39 @@ public class Result<T> implements Serializable{
 
     public Result<T> setErrorCode(ResultCode resultCode){
         this.success = false;
-        this.code = resultCode.getCode();
-        this.message = resultCode.getMessage();
+        this.retCode = resultCode.getCode();
+        this.retMsg = resultCode.getMessage();
         return this;
     }
 
     public Result<T> setError(String code,String msg){
         this.success = false;
-        this.code = code;
-        this.message = msg;
+        this.retCode = code;
+        this.retMsg = msg;
         return this;
     }
 
     public Result(String code, String message, boolean success, T data) {
-        this.code = code;
-        this.message = message;
+        this.retCode = code;
+        this.retMsg = message;
         this.data = data;
         this.success = success;
     }
 
-    public String getCode() {
-        return code;
+    public String getRetCode() {
+        return retCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setRetCode(String retCode) {
+        this.retCode = retCode;
     }
 
-    public String getMessage() {
-        return message;
+    public String getRetMsg() {
+        return retMsg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setRetMsg(String retMsg) {
+        this.retMsg = retMsg;
     }
 
     public T getData() {
@@ -104,8 +104,8 @@ public class Result<T> implements Serializable{
     @Override
     public String toString() {
         return "Result{" +
-                "code='" + code + '\'' +
-                ", message='" + message + '\'' +
+                "retCode='" + retCode + '\'' +
+                ", retMsg='" + retMsg + '\'' +
                 ", data=" + data +
                 ", success=" + success +
                 '}';

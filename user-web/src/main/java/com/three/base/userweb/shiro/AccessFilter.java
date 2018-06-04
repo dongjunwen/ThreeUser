@@ -81,7 +81,7 @@ public class AccessFilter extends AuthorizationFilter {
             try{
                 out = httpResponse.getWriter();
                 Result<String> _result = Result.newError(ResultCode.USER_NO_LOGGED_IN);
-                _result.setMessage("尚未登录");
+                _result.setRetMsg("尚未登录");
                 //_result.setData(httpResponse.toString());
                 out.append(JSONObject.toJSONString(_result));
             }catch(IOException e){
