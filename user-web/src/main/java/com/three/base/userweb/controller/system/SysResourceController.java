@@ -47,7 +47,7 @@ public class SysResourceController {
             sysResourceVo.setOperNo(ShiroUtils.getCurrentUserNo());
             Result<Integer> _result= sysResourceService.create(sysResourceVo);
             if(!_result.isSuccess()){
-                return Result.newError(_result.getCode(),_result.getMessage());
+                return Result.newError(_result.getRetCode(),_result.getRetMsg());
             }
             return  Result.newSuccess("添加菜单资源成功");
         }catch (Exception e){
@@ -63,7 +63,7 @@ public class SysResourceController {
             sysResourceVo.setOperNo(ShiroUtils.getCurrentUserNo());
             Result<Integer> _result =  sysResourceService.update(sysResourceVo);
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
             return Result.newSuccess("修改菜单资源成功");
         } catch (Exception e) {
@@ -79,7 +79,7 @@ public class SysResourceController {
         try {
             Result<Integer> _result =     sysResourceService.delete(sourceNo);
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
             return Result.newSuccess("删除菜单资源成功");
         }catch (Exception e){

@@ -44,7 +44,7 @@ public class SysUserRoleController {
             sysUserRoleVo.setOperNo(ShiroUtils.getCurrentUserNo());
             Result<Integer> _result= sysUserRoleService.create(sysUserRoleVo);
             if(!_result.isSuccess()){
-                return Result.newError(_result.getCode(),_result.getMessage());
+                return Result.newError(_result.getRetCode(),_result.getRetMsg());
             }
             return  Result.newSuccess("添加用户角色成功");
         }catch (Exception e){
@@ -60,7 +60,7 @@ public class SysUserRoleController {
         try {
             Result<Integer> _result =     sysUserRoleService.delete(id);
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
             return Result.newSuccess("删除用户角色成功");
         }catch (Exception e){
@@ -76,7 +76,7 @@ public class SysUserRoleController {
         try {
             Result<Integer> _result =     sysUserRoleService.deleteByIds(ids);
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
             return Result.newSuccess("批量删除用户角色成功");
         }catch (Exception e){

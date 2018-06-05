@@ -44,7 +44,7 @@ public class SysUserController {
             sysUserVo.setOperNo(ShiroUtils.getCurrentUserNo());
             Result<Integer> _result=sysUserService.createUser(sysUserVo);
             if(!_result.isSuccess()){
-                return Result.newError(_result.getCode(),_result.getMessage());
+                return Result.newError(_result.getRetCode(),_result.getRetMsg());
             }
             return  Result.newSuccess("添加账号成功");
         }catch (Exception e){
@@ -64,7 +64,7 @@ public class SysUserController {
             sysUserVo.setOperNo(ShiroUtils.getCurrentUserNo());
             Result<Integer> _result = sysUserService.updateUser(sysUserVo);
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
             return Result.newSuccess("修改账号成功");
         } catch (Exception e) {
@@ -80,7 +80,7 @@ public class SysUserController {
         try {
             Result<Integer> _result =  sysUserService.operUser(userNo, ShiroUtils.getCurrentUserNo());
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
         }catch (Exception e){
             logger.error("启用|禁用用户异常!{}", e);
@@ -96,7 +96,7 @@ public class SysUserController {
         try {
             Result<Integer> _result =  sysUserService.delUser(userNo);
             if (!_result.isSuccess()) {
-                return Result.newError(_result.getCode(), _result.getMessage());
+                return Result.newError(_result.getRetCode(), _result.getRetMsg());
             }
         }catch (Exception e){
             logger.error("用户删除异常!{}", e);
