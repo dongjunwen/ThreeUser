@@ -1,11 +1,14 @@
 package com.three.base.userapi;
 
 
+import com.github.pagehelper.Page;
 import com.three.base.usercommon.PO.result.SysUserResultVo;
 import com.three.base.usercommon.PO.system.SysUserModiVo;
 import com.three.base.usercommon.PO.system.SysUserVo;
 import com.three.base.usercommon.result.Result;
 import com.three.base.userjdbc.modal.SysUser;
+
+import java.util.Map;
 
 /**
  * @Date:2017/10/19 0019 15:07
@@ -59,4 +62,6 @@ public interface SysUserService {
     Result<Integer> modiPass(SysUserModiVo sysUserModiVo);
 
     Result<Integer> operUser(String userNo,String operNo);
+
+    Page<SysUserResultVo> findList(Map<String, String> params);
 }

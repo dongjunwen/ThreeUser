@@ -1,23 +1,25 @@
 package com.three.base.userweb.controller.system;
 
 
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
 import com.three.base.userapi.SysUserService;
+import com.three.base.usercommon.PO.result.SysUserResultVo;
 import com.three.base.usercommon.PO.system.SysUserVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
 import com.three.base.userjdbc.modal.SysUser;
+import com.three.base.userweb.utils.PageUitls;
 import com.three.base.userweb.utils.ShiroUtils;
 import com.three.base.userweb.validator.ValidatorUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * @Date:2017/10/19 0019 15:05
@@ -109,6 +111,23 @@ public class SysUserController {
     public Result<SysUser> getUserById(@PathVariable("userNo")String userNo){
         SysUser user = sysUserService.getUserById(userNo);
         return Result.newSuccess(user);
+    }
+
+    @ApiOperation(value = "用户列表")
+    @RequestMapping(method = RequestMethod.GET)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "currPage",value = "当前页",paramType = "query"),
+            @ApiImplicitParam(name = "sort",value = "排序 ASC 或 DESC",required = false,example = "asc/desc",paramType = "query"),
+            @ApiImplicitParam(name = "orderBy",value = "排序字段",required = false,example = "createdTime",paramType = "query"),
+            @ApiImplicitParam(name = "pageSize",value = "每页显示条数",required = false,example = "createdTime",paramType = "query"),
+            //@ApiImplicitParam(name = "startTime",value = "开始时间",dataType = "long",paramType = "query"),如果时间类型则可以打开
+            //@ApiImplicitParam(name = "endTime",value = "结束时间",dataType = "long",paramType = "query"),
+            @ApiImplicitParam(name = "filter",value = "通用表过滤器。发送JSON键/值对，如<code>{“key”:“value”}</code>。", paramType = "query",dataTypeClass = JSON.class)
+
+    })
+    public Result<PageUitls<SysUserResultVo>> findList(@RequestParam @ApiParam(hidden = true) Map<String,String> params){
+        Page<SysUserResultVo> page =  sysUserService.findList(params);
+        return Result.newSuccess(new PageUitls<SysUserResultVo>(page));
     }
 
 

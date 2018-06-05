@@ -29,8 +29,27 @@ public class SysUserResultVo {
     private String departNo;
     @ApiModelProperty(value = "部门名称")
     private String departName;
-    @ApiModelProperty(value = "所属公司信息")
+    private String status;
+    private String statusName;
+    // @ApiModelProperty(value = "所属公司信息")
    // private SwCompInfoResultVo swCompInfoResultVo;
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
 
     public String getUserNo() {
         return userNo;

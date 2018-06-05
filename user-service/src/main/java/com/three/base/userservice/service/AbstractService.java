@@ -3,7 +3,6 @@ package com.three.base.userservice.service;
 import com.three.base.userjdbc.util.MyMapper;
 import org.apache.ibatis.exceptions.TooManyResultsException;
 import org.springframework.beans.factory.annotation.Autowired;
-import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.weekend.Weekend;
 
 import java.lang.reflect.Field;

@@ -1,6 +1,7 @@
 package com.three.base.userservice.service.system.impl;
 
 
+import com.github.pagehelper.Page;
 import com.three.base.userapi.SysUserService;
 import com.three.base.usercommon.PO.result.SysUserResultVo;
 import com.three.base.usercommon.PO.system.SysUserModiVo;
@@ -12,15 +13,19 @@ import com.three.base.userjdbc.mapper.SysUserMapper;
 import com.three.base.userjdbc.mapper.SysUserRoleMapper;
 import com.three.base.userjdbc.modal.SysUser;
 import com.three.base.userjdbc.modal.SysUserRole;
+import com.three.base.userjdbc.util.Common;
+import com.three.base.userservice.service.AbstractService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import tk.mybatis.mapper.weekend.Weekend;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Date:2017/10/19 0019 15:08
@@ -28,7 +33,7 @@ import java.util.List;
  * @Description：
  **/
 @Service
-public class SysUserServiceImpl  implements SysUserService {
+public class SysUserServiceImpl extends AbstractService<SysUser> implements SysUserService {
     private static  final Logger logger=LoggerFactory.getLogger(SysUserServiceImpl.class);
 
     @Autowired
@@ -185,4 +190,25 @@ public class SysUserServiceImpl  implements SysUserService {
            BeanUtils.copyProperties(sysUser,sysUserVo);
     }
 
+    @Override
+    public Page<SysUserResultVo> findList(Map<String, String> params) {
+        Weekend serviceCondition = Common.getServiceCondition(params, SysUser.class);
+        Page<SysUser> sysUsers = (Page<SysUser>)findByCondition(serviceCondition);
+        Page<SysUserResultVo> sysUserResultVos=new Page<SysUserResultVo>();
+        sysUserResultVos.setTotal(sysUsers.getTotal());
+        sysUserResultVos.setPages(sysUsers.getPages());
+        sysUserResultVos.setPageSize(sysUsers.getPageSize());
+        sysUserResultVos.setPageNum(sysUsers.getPageNum());
+        for(SysUser sysUser:sysUsers){
+            SysUserResultVo sysUserResultVo=new SysUserResultVo();
+            BeanUtils.copyProperties(sysUser,sysUserResultVo);
+            sysUserResultVo.setStatusName(SysDictUtils.getNameByUniq("STATUS",sysUser.getStatus()));
+
+            List<SysUserRole> sysUserRoles=sysUserRoleMapper.selectByUserNo(sysUserResultVo.getUserNo());
+            if(sysUserRoles!=null && sysUserRoles.size()>=1)
+                sysUserResultVo.setRoleCode(sysUserRoles.get(0).getRoleCode());
+            sysUserResultVos.add(sysUserResultVo);
+        }
+        return sysUserResultVos;
+    }
 }

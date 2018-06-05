@@ -1,7 +1,6 @@
 package com.three.base.userservice.service;
 
 import org.apache.ibatis.exceptions.TooManyResultsException;
-import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.weekend.Weekend;
 
 import java.util.List;
