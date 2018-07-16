@@ -4,9 +4,10 @@ package com.three.base.userjdbc.mapper;
 import com.three.base.usercommon.PO.system.SysResourceCondVo;
 import com.three.base.userjdbc.modal.SysResource;
 import com.three.base.userjdbc.util.MyMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-
+@Mapper
 public interface SysResourceMapper extends MyMapper<SysResource> {
 
     SysResource selectByResourceNo(String sourceNo);

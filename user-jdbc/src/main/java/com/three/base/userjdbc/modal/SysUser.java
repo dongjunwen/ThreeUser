@@ -4,10 +4,12 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
 @ApiModel(value = "用户实体 SysUser")
+@Table(name="sys_user")
 public class SysUser implements Serializable {
     @Id
     private Integer id;

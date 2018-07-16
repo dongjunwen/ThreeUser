@@ -1,8 +1,10 @@
 package com.three.base.userjdbc.modal;
 
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
+@Table(name="sys_user_role")
 public class SysUserRole {
     @Id
     private Integer id;
