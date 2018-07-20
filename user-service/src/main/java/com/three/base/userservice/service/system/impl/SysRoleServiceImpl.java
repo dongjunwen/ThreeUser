@@ -46,7 +46,7 @@ public class SysRoleServiceImpl extends AbstractService<SysRole> implements SysR
     }
 
     private void convertVoToEntity(SysRole sysRole, SysRoleVo sysRoleVo) {
-        BeanUtils.copyProperties(sysRole,sysRoleVo);
+        BeanUtils.copyProperties(sysRoleVo,sysRole);
     }
 
     @Override
