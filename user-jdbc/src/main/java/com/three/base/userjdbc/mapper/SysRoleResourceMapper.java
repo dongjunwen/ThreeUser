@@ -14,4 +14,6 @@ public interface SysRoleResourceMapper extends MyMapper<SysRoleResource> {
     List<SysRoleResource> selectByUserNo(String userNo);
 
     SysRoleResource selectByRoleCodeAndSourceNo(@Param("roleCode") String roleCode, @Param("sourceNo") String sourceNo);
+
+    void deleteByRoleCode(String roleCode);
 }

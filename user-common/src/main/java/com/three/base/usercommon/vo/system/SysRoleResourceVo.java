@@ -1,9 +1,10 @@
-package com.three.base.usercommon.PO.system;
+package com.three.base.usercommon.vo.system;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -14,6 +15,7 @@ import org.hibernate.validator.constraints.NotBlank;
  **/
 @Getter
 @Setter
+@ToString
 @ApiModel(value = "角色操作实体 SysRoleResourceVo")
 public class SysRoleResourceVo {
     @NotBlank(message = "角色代码不能为空")
@@ -26,19 +28,4 @@ public class SysRoleResourceVo {
     private String sourceNo;
     private String operNo;
 
-    public String getRoleCode() {
-        return roleCode;
-    }
-
-    public void setRoleCode(String roleCode) {
-        this.roleCode = roleCode;
-    }
-
-    public String getSourceNo() {
-        return sourceNo;
-    }
-
-    public void setSourceNo(String sourceNo) {
-        this.sourceNo = sourceNo;
-    }
 }

@@ -1,11 +1,11 @@
 package com.three.base.userapi;
 
 
-
-import com.three.base.usercommon.PO.result.SysUserRoleResultVo;
-import com.three.base.usercommon.PO.system.SysUserRoleVo;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysUserRoleResultVo;
+import com.three.base.usercommon.vo.system.SysUserRoleVo;
 import com.three.base.userjdbc.modal.SysUserRole;
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.List;
 
@@ -24,4 +24,8 @@ public interface SysUserRoleService  {
     Result<Integer> delete(String id);
 
     Result<Integer> create(SysUserRoleVo sysUserRoleVo);
+
+    Integer deleteByUserNo(String userNo);
+
+    void insert(List<SysUserRole> sysUserRoleList);
 }

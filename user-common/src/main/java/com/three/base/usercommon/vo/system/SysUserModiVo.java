@@ -1,4 +1,4 @@
-package com.three.base.usercommon.PO.system;
+package com.three.base.usercommon.vo.system;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

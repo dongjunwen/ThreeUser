@@ -2,6 +2,7 @@ package com.three.base.usercommon.utils;
 
 
 import com.three.base.usercommon.exception.RRException;
+import org.apache.commons.lang3.StringUtils;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -491,6 +492,21 @@ public class DateUtil {
     public static Date addHours(Date date, int amount) {
         return add(date, Calendar.HOUR_OF_DAY, amount);
     }
+
+    /**
+     * 日期格式化
+     *
+     * @param date
+     * @param formatStr 格式类型
+     * @return
+     */
+    public static String getDateFormat(Date date, String formatStr) {
+        if (StringUtils.isNotBlank(formatStr)) {
+            return new SimpleDateFormat(formatStr).format(date);
+        }
+        return null;
+    }
+
 
     /**
      * 返回指定时间点 <code>amount</code> 分钟后(前)的时间. 返回新对象,源日期对象(<code>date</code>)不变.

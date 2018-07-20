@@ -2,10 +2,10 @@ package com.three.base.userservice.service.system.impl;
 
 
 import com.three.base.userapi.SysUserRoleService;
-import com.three.base.usercommon.PO.result.SysUserRoleResultVo;
-import com.three.base.usercommon.PO.system.SysUserRoleVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysUserRoleResultVo;
+import com.three.base.usercommon.vo.system.SysUserRoleVo;
 import com.three.base.userjdbc.mapper.SysRoleMapper;
 import com.three.base.userjdbc.mapper.SysUserRoleMapper;
 import com.three.base.userjdbc.modal.SysRole;
@@ -52,12 +52,21 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
     }
 
     @Override
+    public Integer deleteByUserNo(String userNo) {
+        return sysUserRoleMapper.deleteByUserNo(userNo);
+    }
+
+    public void insert(List<SysUserRole> sysUserRoleList) {
+         sysUserRoleMapper.insertBatch(sysUserRoleList);
+    }
+
+    @Override
     public List<SysUserRoleResultVo> getEntityByUserNo(String userNo) {
         List<SysUserRole> sysUserRoles=selectByUserNo(userNo);
         List<SysUserRoleResultVo> sysUserRoleResultVos=new ArrayList<>();
         for(SysUserRole sysUserRole:sysUserRoles){
             SysUserRoleResultVo sysUserRoleResultVo=new SysUserRoleResultVo();
-            sysUserRoleResultVo.setId(sysUserRole.getId());
+            sysUserRoleResultVo.setId(sysUserRole.getId().toString());
             sysUserRoleResultVo.setUserNo(sysUserRole.getUserNo());
             sysUserRoleResultVo.setRoleCode(sysUserRole.getRoleCode());
             SysRole sysRole=sysRoleMapper.selectByRoleCode(sysUserRole.getRoleCode());

@@ -12,13 +12,13 @@
     <result column="version" property="version" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_no, role_code, create_no, create_time, modi_no, modi_time, version
+    id, user_no, role_code,role_name, create_no, create_time, modi_no, modi_time, version
   </sql>
   <select id="selectByUserNo" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
-    a.id,  a.user_no,  a.role_code,b.role_name, a.create_no,  a.create_time,  a.modi_no,  a.modi_time,  a.version
-    from sys_user_role as a join sys_role as b on a.role_code=b.role_code
-    where a.user_no = #{userNo,jdbcType=VARCHAR}
+   <include refid="Base_Column_List" />
+    from sys_user_role
+    where user_no = #{userNo,jdbcType=VARCHAR}
   </select>
 
   <select id="selectByUserNoAndRoleCode" resultMap="BaseResultMap">
@@ -28,4 +28,20 @@
     where user_no = #{userNo,jdbcType=VARCHAR}
     and role_code=#{roleCode,jdbcType=VARCHAR}
   </select>
+
+  <delete id="deleteByUserNo" parameterType="java.lang.String">
+    delete  from  sys_user_role  WHERE user_no = #{userNo,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insertBatch" parameterType="java.util.List" useGeneratedKeys="false">
+    insert into SYS_USER_ROLE (user_no, role_code,
+    role_name, create_no, create_time
+    )
+   VALUES
+    <foreach collection="list" open="(" close=")" separator="," index="index" item="item">
+      #{item.userNo,jdbcType=VARCHAR}, #{item.roleCode,jdbcType=VARCHAR},
+      #{item.roleName,jdbcType=VARCHAR},
+      #{item.createNo,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}
+    </foreach>
+  </insert>
 </mapper>

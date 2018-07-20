@@ -4,11 +4,10 @@ package com.three.base.userservice.service.system.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.three.base.userapi.SysDictService;
-import com.three.base.usercommon.PO.system.SysDictCondVo;
-import com.three.base.usercommon.PO.system.SysDictVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
-import com.three.base.userjdbc.util.Common;
+import com.three.base.usercommon.vo.system.SysDictCondVo;
+import com.three.base.usercommon.vo.system.SysDictVo;
 import com.three.base.userjdbc.mapper.SysDictMapper;
 import com.three.base.userjdbc.modal.SysDict;
 import com.three.base.userservice.service.AbstractService;
@@ -17,11 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Condition;
-import tk.mybatis.mapper.weekend.Weekend;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Date:2017/10/24 0024 13:49

@@ -2,10 +2,10 @@ package com.three.base.userweb.controller.system;
 
 
 import com.three.base.userapi.SysUserRoleService;
-import com.three.base.usercommon.PO.result.SysUserRoleResultVo;
-import com.three.base.usercommon.PO.system.SysUserRoleVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysUserRoleResultVo;
+import com.three.base.usercommon.vo.system.SysUserRoleVo;
 import com.three.base.userweb.utils.ShiroUtils;
 import com.three.base.userweb.validator.ValidatorUtil;
 import io.swagger.annotations.Api;

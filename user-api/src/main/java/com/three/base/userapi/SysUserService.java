@@ -2,10 +2,11 @@ package com.three.base.userapi;
 
 
 import com.github.pagehelper.Page;
-import com.three.base.usercommon.PO.result.SysUserResultVo;
-import com.three.base.usercommon.PO.system.SysUserModiVo;
-import com.three.base.usercommon.PO.system.SysUserVo;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysUserModiVo;
+import com.three.base.usercommon.vo.system.SysUserResultVo;
+import com.three.base.usercommon.vo.system.SysUserVo;
+import com.three.base.userjdbc.dto.SysUserCondDto;
 import com.three.base.userjdbc.modal.SysUser;
 
 import java.util.Map;
@@ -64,4 +65,6 @@ public interface SysUserService {
     Result<Integer> operUser(String userNo,String operNo);
 
     Page<SysUserResultVo> findList(Map<String, String> params);
+
+    Page<SysUser> listPage(SysUserCondDto sysUserCondDto);
 }

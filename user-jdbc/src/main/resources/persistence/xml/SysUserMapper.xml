@@ -82,4 +82,20 @@
     where user_no = #{userNo,jdbcType=VARCHAR}
     and  version = #{version,jdbcType=INTEGER}
   </update>
+
+  <select id="selectList" parameterType="com.three.base.userjdbc.dto.SysUserCondDto" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    WHERE  1=1
+    <if test="userName != null and userName!=''" >
+      and  USER_NAME LIKE #{userName,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="phoneNum != null and phoneNum!=''" >
+      and PHONE_NUM LIKE #{phoneNum,jdbcType=VARCHAR}||'%'
+    </if>
+    <if test="emailAddr != null and emailAddr!=''" >
+      and EMAIL_ADDR LIKE #{emailAddr,jdbcType=VARCHAR}||'%'
+    </if>
+  </select>
 </mapper>

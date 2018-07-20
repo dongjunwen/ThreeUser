@@ -1,4 +1,4 @@
-package com.three.base.usercommon.PO.result;
+package com.three.base.usercommon.vo.system;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -18,6 +18,15 @@ public class SysResourceResultVo {
      * 唯一id
      */
     private String id;
+
+    private String sourceId;
+
+    private String sourceNo;
+    /**
+     * 面包屑导航的父id
+     */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String pId;
     /**
      * 面包屑导航的父id
      */
@@ -42,6 +51,68 @@ public class SysResourceResultVo {
      */
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String icon;
+
+    private String sourceType;
+    private String sortOrder;
+    private String sourceLevel;
+    private String ifVisible;
+
+
+    public String getSourceId() {
+        return sourceId;
+    }
+
+    public void setSourceId(String sourceId) {
+        this.sourceId = sourceId;
+    }
+
+    public String getSourceNo() {
+        return sourceNo;
+    }
+
+    public void setSourceNo(String sourceNo) {
+        this.sourceNo = sourceNo;
+    }
+
+    public String getSourceType() {
+        return sourceType;
+    }
+
+    public void setSourceType(String sourceType) {
+        this.sourceType = sourceType;
+    }
+
+    public String getSortOrder() {
+        return sortOrder;
+    }
+
+    public void setSortOrder(String sortOrder) {
+        this.sortOrder = sortOrder;
+    }
+
+    public String getSourceLevel() {
+        return sourceLevel;
+    }
+
+    public void setSourceLevel(String sourceLevel) {
+        this.sourceLevel = sourceLevel;
+    }
+
+    public String getIfVisible() {
+        return ifVisible;
+    }
+
+    public void setIfVisible(String ifVisible) {
+        this.ifVisible = ifVisible;
+    }
+
+    public String getpId() {
+        return pId;
+    }
+
+    public void setpId(String pId) {
+        this.pId = pId;
+    }
 
     public String getId() {
         return id;

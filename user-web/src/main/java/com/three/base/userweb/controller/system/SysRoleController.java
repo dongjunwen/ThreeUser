@@ -1,25 +1,31 @@
 package com.three.base.userweb.controller.system;
 
-import com.alibaba.fastjson.JSON;
-
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Lists;
 import com.three.base.userapi.SysRoleService;
-import com.three.base.usercommon.PO.system.SysRoleCondVo;
-import com.three.base.usercommon.PO.system.SysRoleVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysRoleCondVo;
+import com.three.base.usercommon.vo.system.SysRoleResultVo;
+import com.three.base.usercommon.vo.system.SysRoleVo;
+import com.three.base.userjdbc.dto.SysRoleCondDto;
 import com.three.base.userjdbc.modal.SysRole;
 import com.three.base.userweb.utils.PageUitls;
 import com.three.base.userweb.utils.ShiroUtils;
 import com.three.base.userweb.validator.ValidatorUtil;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Date:2017/10/20 0020 14:03
@@ -36,7 +42,7 @@ public class SysRoleController {
     SysRoleService sysRoleService;
 
     /** restful api 增删改查*/
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "create",method = RequestMethod.POST)
     @ApiOperation(value="创建角色", notes="根据角色对象创建角色")
     @ApiParam(name = "sysRoleVo", value = "角色信息实体 sysRoleVo", required = true)
     public Result<String> create(@RequestBody SysRoleVo sysRoleVo){
@@ -108,5 +114,30 @@ public class SysRoleController {
         Page<SysRole> page =  sysRoleService.findList(sysRoleCondVo);
         return Result.newSuccess(new PageUitls<SysRole>(page));
     }
+
+    @RequestMapping(value = "listPage",method = RequestMethod.POST)
+    @ApiOperation(value="角色分页查询", notes="角色分页查询")
+    @ApiParam(name = "sysRoleCondVo", value = "角色分页查询 sysRoleCondVo", required = true)
+    public Result listPage(@RequestBody SysRoleCondVo sysRoleCondVo){
+        Page<SysRole> page =  sysRoleService.findList(sysRoleCondVo);
+        return Result.newSuccess(new PageInfo<>(page));
+    }
+
+    @RequestMapping(value = "listAll",method = RequestMethod.POST)
+    @ApiOperation(value="获取所有角色信息", notes="获取所有角色信息")
+    public Result listAll(HttpServletRequest request){
+        List<SysRole> sysRoleList=sysRoleService.listAll();
+        List<SysRoleResultVo> sysRoleResultVos= Lists.newArrayList();
+        for(SysRole sysRole:sysRoleList){
+            SysRoleResultVo sysRoleResultVo=new SysRoleResultVo();
+            sysRoleResultVo.setId(sysRole.getRoleCode());
+            sysRoleResultVo.setName(sysRole.getRoleName());
+            sysRoleResultVo.setRoleCode(sysRole.getRoleCode());
+            sysRoleResultVo.setRoleName(sysRole.getRoleName());
+            sysRoleResultVos.add(sysRoleResultVo);
+        }
+        return Result.newSuccess(sysRoleResultVos);
+    }
+
 
 }

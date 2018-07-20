@@ -2,14 +2,13 @@ package com.three.base.userapi;
 
 
 import com.github.pagehelper.Page;
-import com.three.base.usercommon.PO.result.SysResourceResultVo;
-import com.three.base.usercommon.PO.system.SysResourceCondVo;
-import com.three.base.usercommon.PO.system.SysResourceVo;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysResourceCondVo;
+import com.three.base.usercommon.vo.system.SysResourceResultVo;
+import com.three.base.usercommon.vo.system.SysResourceVo;
 import com.three.base.userjdbc.modal.SysResource;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Date:2017/10/23 0023 14:29
@@ -28,4 +27,6 @@ public interface SysResourceService {
     Page<SysResource> findList(SysResourceCondVo sysResourceCondVo);
 
     List<SysResourceResultVo> getListByCurrentUser(String userNo);
+
+    List<SysResource> listAll();
 }

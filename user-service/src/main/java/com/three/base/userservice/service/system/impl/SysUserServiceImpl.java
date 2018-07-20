@@ -2,17 +2,18 @@ package com.three.base.userservice.service.system.impl;
 
 
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.three.base.userapi.SysUserService;
-import com.three.base.usercommon.PO.result.SysUserResultVo;
-import com.three.base.usercommon.PO.system.SysUserModiVo;
-import com.three.base.usercommon.PO.system.SysUserVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
 import com.three.base.usercommon.utils.MD5Util;
+import com.three.base.usercommon.vo.system.SysUserModiVo;
+import com.three.base.usercommon.vo.system.SysUserResultVo;
+import com.three.base.usercommon.vo.system.SysUserVo;
+import com.three.base.userjdbc.dto.SysUserCondDto;
 import com.three.base.userjdbc.mapper.SysUserMapper;
 import com.three.base.userjdbc.mapper.SysUserRoleMapper;
 import com.three.base.userjdbc.modal.SysUser;
-import com.three.base.userjdbc.modal.SysUserRole;
 import com.three.base.userjdbc.util.Common;
 import com.three.base.userservice.service.AbstractService;
 import org.slf4j.Logger;
@@ -24,7 +25,6 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.weekend.Weekend;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -57,7 +57,7 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
         }
         SysUser sysUser=new SysUser();
         convertVoToEntity(sysUser,sysUserVo);
-        sysUser.setPassword(MD5Util.getMD5(sysUser.getPassword()));
+        sysUser.setPassword(MD5Util.getMD5(sysUser.getPassword()==null?"123456":sysUser.getPassword()));
         sysUser.setCreateNo(sysUserVo.getOperNo());
         sysUser.setCreateTime(new Date());
         sysUser.setModiNo(sysUserVo.getOperNo());
@@ -116,28 +116,6 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
         sysUserResultVo.setNickName(sysUser.getNickName());
         sysUserResultVo.setEmailAddr(sysUser.getEmailAddr());
         sysUserResultVo.setPhoneNum(sysUser.getPhoneNum());
-        List<SysUserRole> sysUserRoles=sysUserRoleMapper.selectByUserNo(loginNo);
-        if(sysUserRoles!=null){
-            sysUserResultVo.setRoleCode(sysUserRoles.get(0).getRoleCode());
-            sysUserResultVo.setRoleName(sysUserRoles.get(0).getRoleName());
-        }
-       /* List<SwDepartEmployee> swDepartEmployees=swDepartEmployeeMapper.selectByUserNo(loginNo);
-        if(swDepartEmployees!=null){
-            sysUserResultVo.setDepartNo(swDepartEmployees.get(0).getDepartNo());
-            sysUserResultVo.setDepartName(swDepartEmployees.get(0).getDepartName());
-        }
-        SwCompanyInfo swCompanyInfo= swCompanyInfoMapper.selectByUserNo(loginNo);
-        SwCompInfoResultVo swCompInfoResultVo=new SwCompInfoResultVo();
-        if(swCompanyInfo!=null){
-            swCompInfoResultVo.setCompNo(swCompanyInfo.getCompNo());
-            swCompInfoResultVo.setCompName(swCompanyInfo.getCompName());
-            swCompInfoResultVo.setAddr(swCompanyInfo.getAddr());
-            swCompInfoResultVo.setMobile(swCompanyInfo.getMobile());
-            swCompInfoResultVo.setTelphone(swCompanyInfo.getTelphone());
-            swCompInfoResultVo.setTax(swCompanyInfo.getTax());
-            swCompInfoResultVo.setContactName(swCompInfoResultVo.getContactName());
-        }
-        sysUserResultVo.setSwCompInfoResultVo(swCompInfoResultVo);*/
         return sysUserResultVo;
     }
 
@@ -187,7 +165,7 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
     }
 
     private void convertVoToEntity(SysUser sysUser,SysUserVo sysUserVo) {
-           BeanUtils.copyProperties(sysUser,sysUserVo);
+           BeanUtils.copyProperties(sysUserVo,sysUser);
     }
 
     @Override
@@ -203,12 +181,15 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
             SysUserResultVo sysUserResultVo=new SysUserResultVo();
             BeanUtils.copyProperties(sysUser,sysUserResultVo);
             sysUserResultVo.setStatusName(SysDictUtils.getNameByUniq("STATUS",sysUser.getStatus()));
-
-            List<SysUserRole> sysUserRoles=sysUserRoleMapper.selectByUserNo(sysUserResultVo.getUserNo());
-            if(sysUserRoles!=null && sysUserRoles.size()>=1)
-                sysUserResultVo.setRoleCode(sysUserRoles.get(0).getRoleCode());
             sysUserResultVos.add(sysUserResultVo);
         }
         return sysUserResultVos;
+    }
+
+    @Override
+    public Page<SysUser> listPage(SysUserCondDto sysUserCondDto) {
+        //使用PageHelper类进行分页
+        PageHelper.startPage(sysUserCondDto.getPageNum(), sysUserCondDto.getPageSize());
+        return (Page) sysUserMapper.selectList(sysUserCondDto);
     }
 }

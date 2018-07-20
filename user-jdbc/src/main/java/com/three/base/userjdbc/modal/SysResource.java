@@ -25,7 +25,7 @@ public class SysResource {
 
     private String ifVisible;
 
-    private Integer level;
+    private Integer sourceLevel;
 
     private String memo;
 
@@ -159,11 +159,11 @@ public class SysResource {
         this.version = version;
     }
 
-    public Integer getLevel() {
-        return level;
+    public Integer getSourceLevel() {
+        return sourceLevel;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setSourceLevel(Integer sourceLevel) {
+        this.sourceLevel = sourceLevel;
     }
 }

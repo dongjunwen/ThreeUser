@@ -1,16 +1,14 @@
 package com.three.base.userweb.controller.system;
 
-import com.alibaba.fastjson.JSON;
-
 import com.github.pagehelper.Page;
 import com.three.base.userapi.SysDictService;
-import com.three.base.usercommon.PO.system.SysDictCondVo;
-import com.three.base.usercommon.PO.system.SysDictVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysDictCondVo;
+import com.three.base.usercommon.vo.system.SysDictVo;
+import com.three.base.userjdbc.modal.SysDict;
 import com.three.base.userweb.utils.PageUitls;
 import com.three.base.userweb.validator.ValidatorUtil;
-import com.three.base.userjdbc.modal.SysDict;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Date:2017/10/20 0020 14:04

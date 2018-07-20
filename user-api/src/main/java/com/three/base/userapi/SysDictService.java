@@ -1,13 +1,12 @@
 package com.three.base.userapi;
 
 import com.github.pagehelper.Page;
-import com.three.base.usercommon.PO.system.SysDictCondVo;
-import com.three.base.usercommon.PO.system.SysDictVo;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysDictCondVo;
+import com.three.base.usercommon.vo.system.SysDictVo;
 import com.three.base.userjdbc.modal.SysDict;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Date:2017/10/24 0024 13:48

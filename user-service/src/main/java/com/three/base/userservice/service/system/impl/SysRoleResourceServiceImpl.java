@@ -2,20 +2,17 @@ package com.three.base.userservice.service.system.impl;
 
 
 import com.three.base.userapi.SysRoleResourceService;
-import com.three.base.usercommon.PO.result.SysRoleResourceResultVo;
-import com.three.base.usercommon.PO.system.SysRoleResourceVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysRoleResourceVo;
 import com.three.base.userjdbc.mapper.SysResourceMapper;
 import com.three.base.userjdbc.mapper.SysRoleResourceMapper;
-import com.three.base.userjdbc.modal.SysResource;
 import com.three.base.userjdbc.modal.SysRoleResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -58,26 +55,22 @@ public class SysRoleResourceServiceImpl implements SysRoleResourceService {
     }
 
     @Override
-    public List<SysRoleResourceResultVo> getEntityByRoleCode(String roleCode) {
+    public List<SysRoleResource> getEntityByRoleCode(String roleCode) {
         Condition condition = new Condition(SysRoleResource.class);
         Example.Criteria criteria = condition.createCriteria();
         criteria.andCondition("role_code= '"+roleCode+"'");
-        List<SysRoleResource> sysRoleResources = sysRoleResourceMapper.selectByCondition(condition);
-        List<SysRoleResourceResultVo> sysResources=new ArrayList<SysRoleResourceResultVo>();
-        for(SysRoleResource sysRoleResource:sysRoleResources){
-            SysRoleResourceResultVo sysRoleResourceResultVo=new SysRoleResourceResultVo();
-            SysResource sysResource=sysResourceMapper.selectByResourceNo(sysRoleResource.getSourceNo());
-            sysRoleResourceResultVo.setId(sysRoleResource.getId());
-            sysRoleResourceResultVo.setRoleCode(sysRoleResource.getRoleCode());
-            sysRoleResourceResultVo.setSourceNo(sysRoleResource.getSourceNo());
-            sysRoleResourceResultVo.setSourceName(sysResource.getSourceName());
-            sysResources.add(sysRoleResourceResultVo);
-        }
-        return sysResources;
+        return sysRoleResourceMapper.selectByCondition(condition);
     }
 
     @Override
     public Result<Integer> deleteByIds(String ids) {
         return Result.newSuccess(sysRoleResourceMapper.deleteByIds(ids));
+    }
+
+    @Override
+    public  Result<Integer> save(List<SysRoleResource> sysRoleResources) {
+        String roleCode=sysRoleResources.get(0).getRoleCode();
+        sysRoleResourceMapper.deleteByRoleCode(roleCode);
+        return Result.newSuccess(sysRoleResourceMapper.insertList(sysRoleResources));
     }
 }

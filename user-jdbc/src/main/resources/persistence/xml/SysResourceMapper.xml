@@ -10,7 +10,7 @@
     <result column="req_url" property="reqUrl" jdbcType="VARCHAR" />
     <result column="rsource_icon" property="rsourceIcon" jdbcType="VARCHAR" />
     <result column="sort_order" property="sortOrder" jdbcType="INTEGER" />
-    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="source_level" property="sourceLevel" jdbcType="INTEGER" />
     <result column="if_visible" property="ifVisible" jdbcType="CHAR" />
     <result column="memo" property="memo" jdbcType="VARCHAR" />
     <result column="create_no" property="createNo" jdbcType="VARCHAR" />
@@ -20,8 +20,8 @@
     <result column="version" property="version" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, source_no, source_name, fh_source_no, source_type, req_url, rsource_icon, sort_order, 
-    level, if_visible, memo, create_no, create_time, modi_no, modi_time, version
+    id, source_no, source_name, fh_source_no, source_type, req_url, rsource_icon, sort_order, source_level,
+     if_visible, memo, create_no, create_time, modi_no, modi_time, version
   </sql>
   <select id="selectByResourceNo" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
@@ -33,16 +33,16 @@
 
   <select id="selectListByUserNo" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
-    a.source_no, a.source_name, a.fh_source_no, a.source_type, a.req_url, a.rsource_icon, a.sort_order,a.level
+    a.source_no, a.source_name, a.fh_source_no, a.source_type, a.req_url, a.rsource_icon, a.sort_order,a.source_level
     FROM sys_resource AS a
     JOIN sys_role_resource AS b ON a.source_no=b.source_no
     JOIN sys_user_role AS c ON c.role_code=b.role_code
     WHERE 1=1
     and c.user_no = #{userNo,jdbcType=VARCHAR}
-    ORDER BY LEVEL,sort_order
+    ORDER BY a.source_level,sort_order
   </select>
 
-    <select id="selectByList" parameterType="com.three.base.usercommon.PO.system.SysResourceCondVo" resultMap="BaseResultMap">
+    <select id="selectByList" parameterType="com.three.base.usercommon.vo.system.SysResourceCondVo" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from sys_resource
@@ -77,6 +77,9 @@
       </if>
       <if test="sortOrder != null">
         sort_order = #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="sortLevel != null">
+        sort_level = #{sortLevel,jdbcType=INTEGER},
       </if>
       <if test="ifVisible != null">
         if_visible = #{ifVisible,jdbcType=CHAR},

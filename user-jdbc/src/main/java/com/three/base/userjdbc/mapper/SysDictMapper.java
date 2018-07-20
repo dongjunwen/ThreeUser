@@ -1,6 +1,6 @@
 package com.three.base.userjdbc.mapper;
 
-import com.three.base.usercommon.PO.system.SysDictCondVo;
+import com.three.base.usercommon.vo.system.SysDictCondVo;
 import com.three.base.userjdbc.modal.SysDict;
 import com.three.base.userjdbc.util.MyMapper;
 import org.apache.ibatis.annotations.Mapper;

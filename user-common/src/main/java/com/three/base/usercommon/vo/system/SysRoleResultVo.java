@@ -1,9 +1,11 @@
-package com.three.base.usercommon.PO.system;
+package com.three.base.usercommon.vo.system;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -14,8 +16,17 @@ import org.hibernate.validator.constraints.NotBlank;
  **/
 @Getter
 @Setter
+@ToString
 @ApiModel(value = "角色操作实体 SysResourceVo")
-public class SysRoleVo {
+public class SysRoleResultVo {
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String id;
+    /**
+     * 面包屑导航的父id
+     */
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String pId;
+    private String name;
     @NotBlank(message = "角色代码不能为空")
     @Length(min = 1,max = 32,message = "角色代码长度不能超过32")
     @ApiModelProperty(value = "角色代码",required =true )
@@ -24,17 +35,5 @@ public class SysRoleVo {
     @Length(min = 1,max = 64,message = "角色名称长度不能超过64")
     @ApiModelProperty(value = "角色名称",required =true )
     private String roleName;
-    @Length(max = 1,message = "状态长度不能超过1 默认为Y ")
-    @ApiModelProperty(value = "状态",required =false )
-    private String status;
-    @Length(max = 1,message = "是否超级角色长度不能超过1 默认为N ")
-    @ApiModelProperty(value = "是否超级角色",required =false )
-    private String ifAdmin;
-    @Length(max = 64,message = "备注长度不能超过64")
-    @ApiModelProperty(value = "备注",required =false )
-    private String memo;
-
-    private String operNo;
-
-
+    private boolean checked;
 }

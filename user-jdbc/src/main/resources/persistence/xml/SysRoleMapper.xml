@@ -35,7 +35,7 @@
     role_name like CONCAT (#{condStr},'%')
     )
   </select>
-  <select id="findList" parameterType="com.three.base.usercommon.PO.system.SysRoleCondVo" resultMap="BaseResultMap">
+  <select id="findList" parameterType="com.three.base.usercommon.vo.system.SysRoleCondVo" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from sys_role

@@ -1,7 +1,7 @@
 package com.three.base.userjdbc.mapper;
 
 
-import com.three.base.usercommon.PO.system.SysResourceCondVo;
+import com.three.base.usercommon.vo.system.SysResourceCondVo;
 import com.three.base.userjdbc.modal.SysResource;
 import com.three.base.userjdbc.util.MyMapper;
 import org.apache.ibatis.annotations.Mapper;

@@ -4,27 +4,23 @@ package com.three.base.userservice.service.system.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.three.base.userapi.SysResourceService;
-import com.three.base.usercommon.PO.result.SysResourceResultVo;
-import com.three.base.usercommon.PO.system.SysResourceCondVo;
-import com.three.base.usercommon.PO.system.SysResourceVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysResourceCondVo;
+import com.three.base.usercommon.vo.system.SysResourceResultVo;
+import com.three.base.usercommon.vo.system.SysResourceVo;
 import com.three.base.userjdbc.mapper.SysResourceMapper;
 import com.three.base.userjdbc.modal.SysResource;
-import com.three.base.userjdbc.util.Common;
 import com.three.base.userservice.service.AbstractService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Condition;
-import tk.mybatis.mapper.weekend.Weekend;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Date:2017/10/23 0023 14:29
@@ -98,7 +94,7 @@ public class SysResourceServiceImpl extends AbstractService<SysResource> impleme
             sysResourceResultVo.setId(String.valueOf(sysResource.getSourceNo()));
             sysResourceResultVo.setName(sysResource.getSourceName());
             sysResourceResultVo.setRoute(sysResource.getReqUrl());
-            if(sysResource.getLevel()==1){
+            if(sysResource.getSourceLevel()==1){
                 //sysResourceResultVo.setBpid("1");
             }else{
                 sysResourceResultVo.setBpid(sysResource.getFhSourceNo());
@@ -110,10 +106,13 @@ public class SysResourceServiceImpl extends AbstractService<SysResource> impleme
         return sysResourceResultVos;
     }
 
+    @Override
+    public List<SysResource> listAll() {
+        return sysResourceMapper.selectAll();
+    }
 
 
     private void convertVoToEntity(SysResource sysResource, SysResourceVo sysResourceVo) {
             BeanUtils.copyProperties(sysResource,sysResourceVo);
-
     }
 }

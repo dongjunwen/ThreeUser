@@ -1,10 +1,8 @@
 package com.three.base.userapi;
 
 
-
-import com.three.base.usercommon.PO.result.SysRoleResourceResultVo;
-import com.three.base.usercommon.PO.system.SysRoleResourceVo;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysRoleResourceVo;
 import com.three.base.userjdbc.modal.SysRoleResource;
 
 import java.util.List;
@@ -22,7 +20,9 @@ public interface SysRoleResourceService {
 
     Result<Integer> delete(String id);
 
-    List<SysRoleResourceResultVo> getEntityByRoleCode(String roleCode);
+    List<SysRoleResource> getEntityByRoleCode(String roleCode);
 
     Result<Integer> deleteByIds(String ids);
+
+    Result<Integer> save(List<SysRoleResource> sysRoleResources);
 }

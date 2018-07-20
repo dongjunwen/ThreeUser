@@ -4,23 +4,20 @@ package com.three.base.userservice.service.system.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.three.base.userapi.SysRoleService;
-import com.three.base.usercommon.PO.system.SysRoleCondVo;
-import com.three.base.usercommon.PO.system.SysRoleVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysRoleCondVo;
+import com.three.base.usercommon.vo.system.SysRoleVo;
+import com.three.base.userjdbc.dto.SysRoleCondDto;
 import com.three.base.userjdbc.mapper.SysRoleMapper;
 import com.three.base.userjdbc.modal.SysRole;
-import com.three.base.userjdbc.util.Common;
 import com.three.base.userservice.service.AbstractService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Condition;
-import tk.mybatis.mapper.weekend.Weekend;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Date:2017/10/23 0023 16:08
@@ -92,4 +89,11 @@ public class SysRoleServiceImpl extends AbstractService<SysRole> implements SysR
     public List<SysRole> findRoleLike(String condStr) {
         return sysRoleMapper.findRoleLike(condStr);
     }
+
+    @Override
+    public List<SysRole> listAll() {
+        return sysRoleMapper.selectAll();
+    }
+
+
 }

@@ -2,11 +2,11 @@ package com.three.base.userweb.controller;
 
 
 import com.three.base.userapi.SysUserService;
-import com.three.base.usercommon.PO.result.SysUserResultVo;
-import com.three.base.usercommon.PO.system.SysUserModiVo;
-import com.three.base.usercommon.PO.system.SysUserVo;
 import com.three.base.usercommon.enums.ResultCode;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysUserModiVo;
+import com.three.base.usercommon.vo.system.SysUserResultVo;
+import com.three.base.usercommon.vo.system.SysUserVo;
 import com.three.base.userweb.utils.ShiroUtils;
 import com.three.base.userweb.validator.Assert;
 import com.three.base.userweb.validator.ValidatorUtil;
@@ -17,14 +17,8 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.Date;
 
 /**
  * author:lu.dong
@@ -65,7 +59,7 @@ public class IndexController {
             @ApiImplicitParam(name = "name",value = "用户名",paramType = "form"),
             @ApiImplicitParam(name = "password",value = "用户密码",paramType = "form")
     })
-    public Result<String> login(String name, String password, RedirectAttributes redirectAttributes){
+    public Result<String> login(@RequestParam("name") String name, @RequestParam("password") String password){
         Assert.isBlank(name,"用户名不能为空");
         Assert.isBlank(password,"密码不能为空");
         //模拟登录
@@ -75,12 +69,10 @@ public class IndexController {
             currentUser.login(token);
             SysUserVo sysUserVo=new SysUserVo();
             sysUserVo.setUserNo(name);
-            sysUserVo.setLastLoginTime(new Date());
             sysUserService.updateUser(sysUserVo);
             logger.info("账号:{}登录成功",name);
             return Result.newSuccess(name+"登录成功!");
         }catch(Exception e){
-            //return new ResponseEntity<String>("用户名或密码错误", HttpStatus.UNPROCESSABLE_ENTITY);
             return Result.newError(ResultCode.USERNAME_OR_PASS_ERR);
         }
     }

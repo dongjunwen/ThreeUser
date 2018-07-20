@@ -35,7 +35,7 @@
     from sys_dict
   </select>
 
-  <select id="findList" parameterType="com.three.base.usercommon.PO.system.SysDictCondVo" resultMap="BaseResultMap">
+  <select id="findList" parameterType="com.three.base.usercommon.vo.system.SysDictCondVo" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from sys_dict

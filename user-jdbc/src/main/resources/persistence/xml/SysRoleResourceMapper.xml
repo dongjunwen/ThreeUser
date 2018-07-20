@@ -30,4 +30,10 @@
     and role_code=#{roleCode,jdbcType=VARCHAR}
     and source_no=#{sourceNo,jdbcType=VARCHAR}
   </select>
+  <delete id="deleteByRoleCode" parameterType="java.lang.String">
+    delete
+    from sys_role_resource
+    where 1=1
+    and role_code=#{roleCode,jdbcType=VARCHAR}
+  </delete>
 </mapper>

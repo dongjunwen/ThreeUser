@@ -1,15 +1,14 @@
 package com.three.base.userapi;
 
 
-
 import com.github.pagehelper.Page;
-import com.three.base.usercommon.PO.system.SysRoleCondVo;
-import com.three.base.usercommon.PO.system.SysRoleVo;
 import com.three.base.usercommon.result.Result;
+import com.three.base.usercommon.vo.system.SysRoleCondVo;
+import com.three.base.usercommon.vo.system.SysRoleVo;
+import com.three.base.userjdbc.dto.SysRoleCondDto;
 import com.three.base.userjdbc.modal.SysRole;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Date:2017/10/23 0023 16:07
@@ -28,4 +27,7 @@ public interface SysRoleService {
     Page<SysRole> findList(SysRoleCondVo sysRoleCondVo);
 
     List<SysRole> findRoleLike(String condStr);
+
+    List<SysRole> listAll();
+
 }
