@@ -44,6 +44,7 @@ public class SysResourceServiceImpl extends AbstractService<SysResource> impleme
         }
         SysResource sysResource=new SysResource();
         convertVoToEntity(sysResource,sysResourceVo);
+        sysResource.setFhSourceNo(sysResourceVo.getPsourceNo());
         sysResource.setCreateNo(sysResourceVo.getOperNo());
         sysResource.setCreateTime(new Date());
         sysResource.setModiNo(sysResourceVo.getOperNo());
@@ -113,6 +114,6 @@ public class SysResourceServiceImpl extends AbstractService<SysResource> impleme
 
 
     private void convertVoToEntity(SysResource sysResource, SysResourceVo sysResourceVo) {
-            BeanUtils.copyProperties(sysResource,sysResourceVo);
+            BeanUtils.copyProperties(sysResourceVo,sysResource);
     }
 }

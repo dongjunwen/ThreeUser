@@ -42,7 +42,7 @@ public class SysResourceVo  {
     private String sourceIcon;
     @Max(65536)
     @ApiModelProperty(value = "排序",required =false )
-    private String sortOrder;
+    private Integer sortOrder;
     @Length(max = 1,message = "是否显示长度不能超过1")
     @ApiModelProperty(value = "是否显示 Y:显示 N:不显示",required =false )
     private String ifVisible;

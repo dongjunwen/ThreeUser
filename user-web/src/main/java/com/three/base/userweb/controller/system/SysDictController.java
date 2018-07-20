@@ -93,6 +93,14 @@ public class SysDictController {
         return Result.newSuccess(sysDictList);
     }
 
+    @RequestMapping(value = "findDictByType",method = RequestMethod.GET)
+    @ApiOperation(value="获取数据字典详细信息", notes="根据url的sourceNo来获取数据字典详细信息")
+    @ApiImplicitParam(name = "dictType", value = "数据字典类型", required = true, dataType = "string",paramType = "path")
+    public Result< List<SysDict>> findDictByType(@RequestParam("dictType") String dictType){
+        List<SysDict> sysDictList = sysDictService.getEntityByDictType(dictType);
+        return Result.newSuccess(sysDictList);
+    }
+
     @RequestMapping(value = "/getDictByUniq",method = RequestMethod.POST)
     @ApiOperation(value="获取数据字典详细信息", notes="根据url的sourceNo来获取数据字典详细信息")
     @ApiImplicitParams({
